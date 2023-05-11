@@ -20,7 +20,12 @@ const server = http.createServer((request, response) => {
             response.writeHead(200, {"Content-Type": `img/${ext}`});
             var image = fs.readFileSync(filename, "binary");
             response.end(image,"binary");
-            console.log(" URI= " + request.url + " DUMMY=" + dummy + "  filename=" + filename); 
+//            console.log(" URI= " + request.url + " DUMMY=" + dummy + "  filename=" + filename); 
+        } 
+        if (ext==="txt" || ext==="ico" ){
+                response.writeHead(200, {"Content-Type": "text/html"});      
+                msg = `EDIT-7.1b:method = ${request.method}, filename = ${filename}, ext = ${ext}`;
+                response.end(msg);
         }
     } else if (request.method === 'POST'){
         var data = '';
@@ -36,4 +41,4 @@ const server = http.createServer((request, response) => {
 });
 const port = process.env.PORT || 1337;
 server.listen(port);
-console.log("Server running at http://localhost:%d", port);
+//console.log("Server running at http://localhost:%d", port);
