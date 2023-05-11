@@ -8,8 +8,8 @@ const server = http.createServer((request, response) => {
     if (request.method === 'GET'){
         [dummy,filename]=request.url.split("/");
         [file,ext]=filename.split(".");
-//        if (ext.match(/html|css|javascript/) ){
-         if (ext==="html" || ext === "css"){
+        if (ext.match(/html|css|javascript/) ){
+//         if (ext==="html" || ext === "css"){
             response.writeHead(200, {"Content-Type": `text/${ext}`});
             html=fs.readFileSync(filename,'utf8');
             response.end(html);
